@@ -1,7 +1,0 @@
-# named script0
-# execute next commands
-ls
-echo the current date/time is
-date
-echo my name is
-whoami
