@@ -1,0 +1,27 @@
+chap10
+
+input/output - redirect
+pipe
+
++ why need?
++ definition of stdin, stdout, stderr
++ redirect to stdin/stdout
++ using fork, redirect input/output to other program
++ pipe
++ fork & pipe
+
+* dup
+* dup2
+* pipe
+
+1. who > userlist  : connect stdout to file
+2. sort < data     : connect stdin to file
+3. who | sort      : connect stdout to stdin
+
+#include <unistd.h>
+newfd = dup(oldfd);
+newfd = dup2(oldfd, newfd);
+
+#include <unistd.h>
+result = pipe(int array[2]);
+
