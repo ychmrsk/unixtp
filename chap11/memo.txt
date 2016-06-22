@@ -1,0 +1,62 @@
+chap11
+
++ client/server model
++ bi-direct communication using pipe
++ co-routine
++ file/process similarity
++ socket -- why, what, how
++ network service
++ client/server program using socket
+
+* fdopen
+* popen
+* socket
+* bind
+* listen
+* accept
+* connect
+
+interface of data supplier
+1. disk file   : open & read, write
+2. device file : open & read, write
+3. pipe        : pipe, fork & read, write
+4. socket      : socket, listen, connect & read, write
+
+/etc/services : service & port
+
+**提供者**
+セットアップ
+1. socket 電話回線を引く
+2. bind   電話回線の番号を入手する
+3. listen 着信に備える
+運用
+4. accept 着信を待つ
+5. read/write サービスを提供する
+6. close  切る
+
+**利用者**
+1.電話回線を引く
+2.指定の番号に電話をかける
+3.サービスを利用する
+4.切る
+
+
+#include <sys/types.h>
+#include <sys/socket.h>
+
+sockid = socket(int domain, int type, int protocol);
+  - domain   : FF_INET, 
+  - type     : SOCK_STREAM, SOCK_DGRAM
+  - protocol : 0 (default)
+
+result = bind(int sockid, struct sockaddr *addrp, socklen_t addrlen);
+
+result = listen(int sockid, int qsize);
+  - qsize : acceptable number of  connection
+
+fd = accept(int sockid, struct sockaddr *callerid, socklent_t *addrlenp);
+
+usage = connect(int sockid, struct sockaddr *serv_addrp, socklen_t addrlen);
+  - serv_addrp : pointer that indicate structure holding server address
+  - addrlen    : the size of structure
+
