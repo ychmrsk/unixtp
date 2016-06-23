@@ -8,11 +8,12 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <string.h>
 
 #define oops(m, x) { perror(m); exit(x); }
 
 int make_dgram_client_socket(void);
-int make_internet_address(char *, int, struct socketaddr_in *);
+int make_internet_address(char *, int, struct sockaddr_in *);
 
 int main(int ac, char *av[])
 {
