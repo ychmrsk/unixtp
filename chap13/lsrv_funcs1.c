@@ -71,7 +71,7 @@ void handle_request(char *req, struct sockaddr_in *client, socklen_t addrlen)
 
   narrate("SAID:", response, client);
   ret = sendto(sd, response, strlen(response), 0,
-               (struct sockaddr *)&client, addrlen);
+               (struct sockaddr *)client, addrlen);
   if (ret == -1)
     perror("SERVER sendto failed");
 }
