@@ -1,0 +1,41 @@
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/type.h>
+
+int result = fcntl(int fd, int cmd);
+int result = fcntl(int fd, int cmd, long arg);
+int result = fcntl(int fd, int cmd, struct flock *lockp);
+
+    - fd : file descriptor
+    - cmd : operation executed
+    - arg : arguments
+    - lock : lock info
+
+    - returns -1 when error, 0 when success
+
+<stty>
+icrnl <=> Input : convert CarriageReturn to NewLine
+onlcr <=> Output : add to NewLine a CarriageReturn
+
+
+#include <termio.h>
+#include <unistd.h>
+
+int result = tcgetattr(int fd, struct termios *info);
+int result = tcsetattr(int fd, int when, struct termios *info);
+
+struct termios {
+       tcflag_t c_iflag;    /* input mode flag */
+       tcflag_t c_oflag;    /* output mode flag */
+       tcflag_t c_cflag;    /* control mode flag */
+       tcflag_t c_lflag;    /* local mode flag */
+       cc_t     c_cc[NCCS]; /* control character */
+       speed_t  c_ispeed;   /* input speed */
+       speed_t  c_ospped;   /* output speed */
+}
+
+
+if (flagset & MASK)  : test bits
+flagset |= MASK      : set bits
+flagset &= ~MASK     : clear bits
+
